@@ -23,7 +23,7 @@ class StateFactory extends Factory
     public function definition()
     {
         return [
-            'country_id' => Country::select('id')->get()->random()->first(),
+            'country_id' => Country::select('id')->get()->random()->id,
             'name' => $this->faker->name()
         ];
     }
