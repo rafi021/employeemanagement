@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 
 @push('dashboard_style')
-Custom Style
+<link rel="stylesheet" href="http://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 @endpush
 
 @section('dashboard_content')
@@ -16,7 +16,7 @@ Custom Style
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped">
+            <table id="userTable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -56,5 +56,10 @@ Custom Style
 @endsection
 
 @push('dashboard_script')
-Custom Script
+<script src="http://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+    $('#userTable').DataTable();
+} );
+</script>
 @endpush

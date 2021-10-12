@@ -7,6 +7,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -113,6 +114,14 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if(Auth::user()->id == $user->id){
+            $notification = [
+                'alert_type' => 'Success',
+                'message' => "You Can't Deleted this account!!!"
+            ];
+            notify()->error($notification['message'],$notification['alert_type'],"topRight");
+            return redirect()->route('users.index')->with($notification);
+        }
         $user->delete();
         $notification = [
             'alert_type' => 'Success',
