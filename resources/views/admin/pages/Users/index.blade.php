@@ -45,7 +45,7 @@
                 <tbody>
                     @foreach ($users as $user)
                     <tr>
-                        <th scope="row">{{ $loop->index+1 }}</th>
+                        <th scope="row">{{ $users->firstItem()+$loop->index }}</th>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->updated_at->diffForHumans() }}</td>
