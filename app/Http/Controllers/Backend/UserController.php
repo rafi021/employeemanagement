@@ -49,7 +49,7 @@ class UserController extends Controller
         ]);
         $notification = [
             'alert_type' => 'Success',
-            'message' => 'User Created Successfully!!!'
+            'message' => $user.' User Created Successfully!!!'
         ];
         notify()->success($notification['message'],$notification['alert_type'],"topRight");
         return redirect()->route('users.index')->with($notification);
