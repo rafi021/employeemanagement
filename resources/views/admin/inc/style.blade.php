@@ -8,4 +8,5 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.css">
+<link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
 @stack('dashboard_style')

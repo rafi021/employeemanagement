@@ -44,6 +44,7 @@ class UserController extends Controller
             'alert_type' => 'Success',
             'message' => 'User Created Successfully!!!'
         ];
+        notify()->success($notification['message'],$notification['alert_type'],"topRight");
         return redirect()->route('users.index')->with($notification);
     }
 
@@ -83,6 +84,7 @@ class UserController extends Controller
             'alert_type' => 'Success',
             'message' => 'User Updated Successfully!!!'
         ];
+        notify()->info($notification['message'],$notification['alert_type'],"topRight");
         return redirect()->route('users.index')->with($notification);
     }
 
@@ -99,6 +101,7 @@ class UserController extends Controller
             'alert_type' => 'Success',
             'message' => 'User Deleted Successfully!!!'
         ];
+        notify()->error($notification['message'],$notification['alert_type'],"topRight");
         return redirect()->route('users.index')->with($notification);
     }
 }
