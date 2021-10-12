@@ -7,6 +7,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -79,7 +80,17 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        $user->update($request->validated());
+        $user->update([
+            'username' => $request->username,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+        ]);
+        if($request->password){
+            $user->update([
+                'password' => Hash::make($request->password)
+            ]);
+        }
         $notification = [
             'alert_type' => 'Success',
             'message' => 'User Updated Successfully!!!'
