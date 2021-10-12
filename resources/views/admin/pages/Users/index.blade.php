@@ -12,11 +12,27 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('users.create') }}" class="float-right btn btn-primary">Create</a>
+                <div class="row">
+                    <div class="col">
+                        <form action="{{ route('users.index') }}" method="GET">
+                            <div class="form-row align-items-center">
+                                <div class="col">
+                                    <input type="search" name="search" id="search" class="form-control mb-2" id="inlineformInput" placeholder="Search">
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary mb-2">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <a href="{{ route('users.create') }}" class="float-right btn btn-primary">Create</a>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="card-body">
-            <table id="userTable" class="table table-bordered table-striped">
+            <table id="" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -49,8 +65,8 @@
                     @endforeach
                 </tbody>
               </table>
-              {{ $users->links() }}
             </div>
+            {{ $users->links() }}
     </div>
 </div>
 @endsection

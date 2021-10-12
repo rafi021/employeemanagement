@@ -17,9 +17,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::latest('id')->paginate(10);
+        $users = User::latest('id')->paginate(5)->withQueryString();
+        if($request->has('search')){
+            $users = User::where('username', 'like', "%{$request->search}%")
+                ->orWhere('email', 'like', "%{$request->search}%")->paginate(2);
+        }else{
+
+        }
         return view('admin.pages.Users.index', compact('users'));
     }
 
