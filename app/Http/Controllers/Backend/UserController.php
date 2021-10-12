@@ -23,8 +23,6 @@ class UserController extends Controller
         if($request->has('search')){
             $users = User::where('username', 'like', "%{$request->search}%")
                 ->orWhere('email', 'like', "%{$request->search}%")->paginate(2);
-        }else{
-
         }
         return view('admin.pages.Users.index', compact('users'));
     }
