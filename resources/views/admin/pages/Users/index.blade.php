@@ -35,15 +35,12 @@ Custom Style
                         <td>{{ $user->updated_at->diffForHumans() }}</td>
                         <td>
                             <a href="{{ route('users.edit', $user) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="btn btn-danger"
-                            onclick="event.preventDefault();
-                            if(!window.confirm('Are you sure?')){
-                                return;
-                            }
-                            document.getElementById('delete-form').submit();">
+                            <button type="button" class="btn btn-danger"
+                            onclick="deleteData({{ $user->id }})"
+                            >
                             <i class="fas fa-trash-alt"></i>
-                            </a>
-                            <form id="delete-form" action="{{ route('users.destroy', $user) }}" method="POST" class="d-none">
+                            </button>
+                            <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user) }}" method="POST" class="d-none">
                                 @csrf
                                 @method('DELETE')
                             </form>
