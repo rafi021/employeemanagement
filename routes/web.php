@@ -30,4 +30,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('countries', CountryController::class);
         Route::resource('departments', DepartmentController::class);
     });
+    Route::get('{any}', function () {
+        return view('admin.pages.Employee.index');
+    })->where('any', '.*');
 });
