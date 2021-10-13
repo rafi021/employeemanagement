@@ -47,7 +47,8 @@
                         <label for="department_id" class="col-md-4 col-form-label text-md-right">Department</label>
                         <div class="col-md-6">
                             <select class="form-control" name="department_id"
-                            v-model="employeeForm.department_id">
+                            v-model="employeeForm.department_id"
+                            @change="getDepartments()">
                             <option value="">Select Department</option>
                                 <option
                                 v-for="department in departments"
@@ -63,7 +64,9 @@
                         <label for="country_id" class="col-md-4 col-form-label text-md-right">Country</label>
                         <div class="col-md-6">
                             <select class="form-control" name="country_id"
-                            v-model="employeeForm.country_id">
+                            v-model="employeeForm.country_id"
+                            @change="getCountries()"
+                            >
                                 <option value="">Select Country</option>
                                 <option
                                 v-for="country in countries"
@@ -79,7 +82,8 @@
                         <label for="city_id" class="col-md-4 col-form-label text-md-right">City</label>
                         <div class="col-md-6">
                             <select class="form-control" name="city_id"
-                            v-model="employeeForm.city_id">
+                            v-model="employeeForm.city_id"
+                            @change="getCities()">
                             <option value="">Select City</option>
                             <option
                             v-for="city in cities"
@@ -95,7 +99,8 @@
                         <label for="state_id" class="col-md-4 col-form-label text-md-right">State</label>
                         <div class="col-md-6">
                             <select class="form-control" name="state_id"
-                            v-model="employeeForm.state_id">
+                            v-model="employeeForm.state_id"
+                            @change="getStates()">
                             <option value="">Select State</option>
                                 <option
                                 v-for="state in states"
@@ -201,11 +206,12 @@ export default {
             this.employeeForm.date_hired = this.formateDate(this.employeeForm.date_hired);
             try {
                 await axios.post('/api/employees', this.employeeForm)
+                await this.$router.push({name: 'employee.index'});
             } catch (e) {
                 this.errors = e.response.data.errors
             }
 
-            this.$router.push({name: 'employee.index'});
+
         },
         formateDate(value){
             if(value){

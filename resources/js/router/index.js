@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 const routes = [
     { path: '/employees', component: EmployeeIndex, name: 'employee.index' },
     { path: '/employees/create', component: EmployeeCreate, name: 'employee.create' },
-    { path: '/employees/:id/edit', component: EmployeeEdit, name: 'employee.edit' },
+    { path: '/employees/edit/:id', component: EmployeeEdit, name: 'employee.edit' },
 ];
 
 
