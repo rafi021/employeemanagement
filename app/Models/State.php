@@ -13,4 +13,9 @@ class State extends Model
         'country_id',
         'name'
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class)->withDefault();
+    }
 }

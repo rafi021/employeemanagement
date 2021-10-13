@@ -13,7 +13,7 @@ class StateStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StateStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string',
+            'country_id' => 'required|numeric'
         ];
     }
 }

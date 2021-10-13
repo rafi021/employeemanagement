@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StateStoreRequest;
+use App\Models\Country;
 use App\Models\State;
 use Illuminate\Http\Request;
 
@@ -13,9 +15,14 @@ class StateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $states = State::latest('id')->with(['country'])->paginate(5)->withQueryString();
+        if($request->has('search')){
+            $states = State::where('name', 'like', "%{$request->search}%")
+            ->with(['country'])->paginate(2);
+        }
+        return view('admin.pages.State.index', compact('states'));
     }
 
     /**
@@ -25,7 +32,8 @@ class StateController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::select('id', 'name')->get();
+        return view('admin.pages.State.create', compact('countries'));
     }
 
     /**
@@ -34,9 +42,15 @@ class StateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StateStoreRequest $request)
     {
-        //
+        State::create($request->validated());
+        $notification = [
+            'alert_type' => 'Success',
+            'message' => 'State Created Successfully!!!'
+        ];
+        notify()->success($notification['message'],$notification['alert_type'],"topRight");
+        return redirect()->route('states.index')->with($notification);
     }
 
     /**
@@ -58,7 +72,11 @@ class StateController extends Controller
      */
     public function edit(State $state)
     {
-        //
+        $countries = Country::select('id', 'name')->get();
+        return view('admin.pages.State.edit', compact(
+        'state',
+        'countries'
+    ));
     }
 
     /**
@@ -68,9 +86,15 @@ class StateController extends Controller
      * @param  \App\Models\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, State $state)
+    public function update(StateStoreRequest $request, State $state)
     {
-        //
+        $state->update($request->validated());
+        $notification = [
+            'alert_type' => 'Success',
+            'message' => 'State Updated Successfully!!!'
+        ];
+        notify()->success($notification['message'],$notification['alert_type'],"topRight");
+        return redirect()->route('states.index')->with($notification);
     }
 
     /**
@@ -81,6 +105,12 @@ class StateController extends Controller
      */
     public function destroy(State $state)
     {
-        //
+        $state->delete();
+        $notification = [
+            'alert_type' => 'Success',
+            'message' => 'State Deleted Successfully!!!'
+        ];
+        notify()->success($notification['message'],$notification['alert_type'],"topRight");
+        return redirect()->route('states.index')->with($notification);
     }
 }

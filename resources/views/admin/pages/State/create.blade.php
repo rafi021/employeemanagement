@@ -8,18 +8,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8 mx-auto">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">City Form</h1>
+                <h1 class="h3 mb-0 text-gray-800">State Form</h1>
             </div>
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('cities.index') }}" class="float-right btn btn-secondary">Back</a>
+                    <a href="{{ route('states.index') }}" class="float-right btn btn-secondary">Back</a>
                 </div>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('cities.store') }}">
+                <form method="POST" action="{{ route('states.store') }}">
                     @csrf
                     <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('City Name') }}</label>
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('State Name') }}</label>
 
                         <div class="col-md-6">
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -33,18 +33,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="state_id"
+                        <label for="country_id"
                             class="col-md-4 col-form-label text-md-right">{{ __('State Name') }}</label>
 
                         <div class="col-md-6">
-                                <select class="form-control" name="state_id" id="state_id">
+                                <select class="form-control" name="country_id" id="country_id">
                                     <option selected>Select one</option>
-                                    @foreach ($states as $state)
-                                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            @error('state_id')
+                            @error('country_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
