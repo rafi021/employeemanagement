@@ -26,6 +26,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/generate-report', [HomeController::class, 'generateReport'])->name('generate.report');
 Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::resource('users', UserController::class);

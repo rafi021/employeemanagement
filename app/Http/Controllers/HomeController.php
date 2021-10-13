@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\State;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PDF;
 
 class HomeController extends Controller
 {
@@ -44,5 +45,30 @@ class HomeController extends Controller
             'department_count',
             'employee_count'
         ));
+    }
+
+    public function generateReport()
+    {
+        $user_count = User::count();
+        $state_count = State::count();
+        $city_count = City::count();
+        $country_count = Country::count();
+        $department_count = Department::count();
+        $employee_count = Employee::count();
+
+        $pdf = PDF::loadView('admin.pages.Report.report', compact(
+            'user_count',
+            'state_count',
+            'city_count',
+            'country_count',
+            'department_count',
+            'employee_count'
+            ))
+            ->setPaper('a4')
+            ->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+        return $pdf->download('report.pdf');
     }
 }
