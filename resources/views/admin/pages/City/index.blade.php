@@ -63,8 +63,10 @@
                     @endforeach
                 </tbody>
               </table>
+              <div class="d-flex justify-content-center">
+                {{ $cities->links() }}
             </div>
-            {{ $cities->links() }}
+        </div>
     </div>
 </div>
 @endsection
