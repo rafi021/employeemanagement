@@ -23,3 +23,7 @@ Route::middleware(['auth'])->group(function () {
 
 });
 Route::apiResource('employees', EmployeeController::class);
+Route::get('/countries', [EmployeeController::class, 'getCountries'])->name('get.countries');
+Route::get('/cities', [EmployeeController::class, 'getCities'])->name('get.cities');
+Route::get('/states', [EmployeeController::class, 'getStates'])->name('get.states');
+Route::get('/departments', [EmployeeController::class, 'getDepartments'])->name('get.departments');

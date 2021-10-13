@@ -26,7 +26,9 @@
     },
     "dependencies": {
         "laravel-vue-pagination": "^2.3.1",
+        "moment": "^2.29.1",
         "vform": "^2.1.1",
-        "vue-router": "^3.5.2"
+        "vue-router": "^3.5.2",
+        "vuejs-datepicker": "^1.6.2"
     }
 }

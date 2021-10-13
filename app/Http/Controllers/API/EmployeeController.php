@@ -5,8 +5,16 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EmployeeStoreRequest;
 use App\Http\Requests\EmployeeUpdateRequest;
+use App\Http\Resources\CityResource;
+use App\Http\Resources\CountryResource;
+use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\EmployeeResource;
+use App\Http\Resources\StateResource;
+use App\Models\City;
+use App\Models\Country;
+use App\Models\Department;
 use App\Models\Employee;
+use App\Models\State;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -29,9 +37,9 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeStoreRequest $request)
     {
+        //dd($request->all());
         $employee = Employee::create($request->validated());
         return new EmployeeResource($employee);
-
     }
 
     /**
@@ -68,5 +76,25 @@ class EmployeeController extends Controller
     {
         $employee->delete();
         return response()->noContent();
+    }
+
+    public function getCountries()
+    {
+        return CountryResource::collection(Country::latest('id')->get());
+    }
+
+    public function getCities()
+    {
+        return CityResource::collection(City::latest('id')->get());
+    }
+
+    public function getStates()
+    {
+        return StateResource::collection(State::latest('id')->get());
+    }
+
+    public function getDepartments()
+    {
+        return DepartmentResource::collection(Department::latest('id')->get());
     }
 }
