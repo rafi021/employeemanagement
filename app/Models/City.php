@@ -12,4 +12,9 @@ class City extends Model
         'state_id',
         'name'
     ];
+
+    public function state()
+    {
+        return $this->belongsTo(State::class)->withDefault();
+    }
 }

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('countries', CountryController::class);
+        Route::resource('cities', CityController::class);
+        Route::resource('states', StateController::class);
         Route::resource('departments', DepartmentController::class);
     });
     Route::get('{any}', function () {
