@@ -6,15 +6,15 @@
 
 @section('dashboard_content')
 <div class="row justify-content-center">
-    <div class="col-md-9 mx-auto">
+    <div class="col-md-10 mx-auto">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Users</h1>
+            <h1 class="h3 mb-0 text-gray-800">Roles</h1>
         </div>
         <div class="card">
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-                        <form action="{{ route('users.index') }}" method="GET">
+                        <form action="{{ route('roles.index') }}" method="GET">
                             <div class="form-row align-items-center">
                                 <div class="col">
                                     <input type="search" name="search" id="search" class="form-control mb-2" id="inlineformInput" placeholder="Search">
@@ -26,7 +26,7 @@
                         </form>
                     </div>
                     <div>
-                        <a href="{{ route('users.create') }}" class="float-right btn btn-primary">Create</a>
+                        <a href="{{ route('roles.create') }}" class="float-right btn btn-primary">Create</a>
                     </div>
                 </div>
             </div>
@@ -36,27 +36,31 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">UserName</th>
-                    <th scope="col">Email</th>
+                    <th scope="col">Role Name</th>
+                    <th scope="col">Permissions</th>
                     <th scope="col">Last Modified</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($roles as $role)
                     <tr>
-                        <th scope="row">{{ $users->firstItem()+$loop->index }}</th>
-                        <td>{{ $user->username }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->updated_at->diffForHumans() }}</td>
-                        <td>
-                            <a href="{{ route('users.edit', $user) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                        <th scope="row">{{ $roles->firstItem()+$loop->index }}</th>
+                        <td scope="row">{{ $role->name }}</td>
+                        <td scope="row">
+                            @foreach ($role->permissions->pluck('name') as $item)
+                                <span class="badge badge-glow badge-success text-primary"> {{ $item }} </span>
+                            @endforeach
+                        </td>
+                        <td scope="row">{{ $role->updated_at->diffForHumans() }}</td>
+                        <td scope="row">
+                            <a href="{{ route('roles.edit', $role) }}" class="btn btn-info"><i class="fas fa-edit"></i></a>
                             <button type="button" class="btn btn-danger"
-                            onclick="deleteData({{ $user->id }})"
+                            onclick="deleteData({{ $role->id }})"
                             >
                             <i class="fas fa-trash-alt"></i>
                             </button>
-                            <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user) }}" method="POST" class="d-none">
+                            <form id="delete-form-{{ $role->id }}" action="{{ route('roles.destroy', $role) }}" method="POST" class="d-none">
                                 @csrf
                                 @method('DELETE')
                             </form>
@@ -66,7 +70,7 @@
                 </tbody>
               </table>
               <div class="d-flex justify-content-center">
-                  {{ $users->links() }}
+                  {{ $roles->links() }}
               </div>
             </div>
     </div>
@@ -77,7 +81,7 @@
 <script src="http://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready( function () {
-    $('#userTable').DataTable();
+    $('#roleTable').DataTable();
 } );
 </script>
 @endpush

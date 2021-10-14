@@ -6,110 +6,84 @@
 
 @section('dashboard_content')
     <div class="row justify-content-center">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-12 mx-auto">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Users Form</h1>
+                <h1 class="h3 mb-0 text-gray-800">Roles Form</h1>
             </div>
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('users.index') }}" class="float-right btn btn-secondary">Back</a>
+                    <a href="{{ route('roles.index') }}" class="float-right btn btn-secondary">Back</a>
                 </div>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('users.store') }}">
+                <form method="POST" action="{{ isset($role) ? route('roles.update', $role): route('roles.store') }}">
                     @csrf
+                    @isset($role)
+                    @method('PUT')
+                    @endisset
                     <div class="form-group row">
-                        <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Role Name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror"
-                                name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" value="{{ $role->name ?? old('name') }}"  autocomplete="name" autofocus>
 
-                            @error('username')
+                            @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="first_name"
-                            class="col-md-4 col-form-label text-md-right">{{ __('First name') }}</label>
+                    <div class="col-12">
 
-                        <div class="col-md-6">
-                            <input id="first_name" type="text"
-                                class="form-control @error('first_name') is-invalid @enderror" name="first_name"
-                                value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
-
-                            @error('first_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                        @error('permissions')
+                                <div class="invalid-feedback" role="alert">
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                </div>
                             @enderror
+                        <div class="mb-1 row">
+
+                            <div class="col-sm-2">
+                                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                                <label class="col-form-label" for="permission-name">Permissions</label>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="select-all">
+                                    <label class="form-check-label" for="select-all">Select All</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                @foreach($permissions->chunk(4) as $chunks)
+                                    <div class="row">
+                                        @foreach ($chunks as $permission)
+                                        <div class="col mr-4 mb-2">
+                                            <label class="custom-control form-check">
+                                                <input type="checkbox" name="permissions[]" id="permission" @error('permissions') is-invalid @enderror
+                                                value="{{ $permission->id }}"
+                                                @if(isset($role))
+                                                    @foreach($rolepermissions as $rPermission)
+                                                    {{ $permission->id == $rPermission->id ? 'checked' : '' }}
+                                                    @endforeach
+                                                @endif
+                                                class="form-check-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">{{ $permission->name }}</span>
+                                            </label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Last name') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror"
-                                name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name"
-                                autofocus>
-
-                            @error('last_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="email"
-                            class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password-confirm"
-                            class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
-                                required autocomplete="new-password">
-                        </div>
-                    </div>
-
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
+                                @if (isset($role))
+                                {{ __('Update') }}
+                                @else
                                 {{ __('Add New') }}
+                                @endif
                             </button>
                         </div>
                     </div>
@@ -120,5 +94,19 @@
 @endsection
 
 @push('dashboard_script')
-
+<script>
+    // Listen for click on toggle checkbox
+    $('#select-all').click(function (event) {
+        if (this.checked) {
+            // Iterate each checkbox
+            $(':checkbox').each(function () {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function () {
+                this.checked = false;
+            });
+        }
+    });
+</script>
 @endpush
