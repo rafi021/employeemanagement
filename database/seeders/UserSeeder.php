@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         // Admin user
-        User::updateOrCreate([
+        $admin = User::updateOrCreate([
             'username' => 'admin',
             'first_name' => 'admin',
             'last_name' => 'user',
@@ -25,7 +25,21 @@ class UserSeeder extends Seeder
             'password' => Hash::make(12345678), // 12345678
             'remember_token' => Str::random(10),
         ]);
-        User::factory(100)->create();
+        $admin->assignRole('Admin');
+
+        // Normal User
+        $normal = User::updateOrCreate([
+            'username' => 'user',
+            'first_name' => 'user',
+            'last_name' => 'user',
+            'email' => 'user@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make(12345678), // 12345678
+            'remember_token' => Str::random(10),
+        ]);
+        $normal->assignRole('User');
+
+        User::factory(1000)->create();
     }
 }
 
