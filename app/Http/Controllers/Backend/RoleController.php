@@ -14,6 +14,18 @@ use function GuzzleHttp\Promise\all;
 class RoleController extends Controller
 {
     /**
+     * create a new instance of the class
+     *
+     * @return void
+     */
+    function __construct()
+    {
+        $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:role-create', ['only' => ['create','store']]);
+        $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

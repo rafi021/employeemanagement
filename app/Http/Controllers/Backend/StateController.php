@@ -11,6 +11,19 @@ use Illuminate\Http\Request;
 class StateController extends Controller
 {
     /**
+     * create a new instance of the class
+     *
+     * @return void
+     */
+    function __construct()
+    {
+        $this->middleware('permission:state-list|state-create|state-edit|state-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:state-create', ['only' => ['create','store']]);
+        $this->middleware('permission:state-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:state-delete', ['only' => ['destroy']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -11,6 +11,18 @@ use Illuminate\Http\Request;
 class CityController extends Controller
 {
     /**
+     * create a new instance of the class
+     *
+     * @return void
+     */
+    function __construct()
+    {
+        $this->middleware('permission:city-list|city-create|city-edit|city-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:city-create', ['only' => ['create','store']]);
+        $this->middleware('permission:city-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:city-delete', ['only' => ['destroy']]);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
