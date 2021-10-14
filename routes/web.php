@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\HomeController;
@@ -34,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('cities', CityController::class);
         Route::resource('states', StateController::class);
         Route::resource('departments', DepartmentController::class);
+        Route::resource('permissions', PermissionController::class);
     });
     Route::get('{any}', function () {
         return view('admin.pages.Employee.index');

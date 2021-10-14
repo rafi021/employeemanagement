@@ -65,7 +65,7 @@
                         <h6 class="collapse-header">Users Management:</h6>
                         <a class="collapse-item" href="{{ route('users.index') }}">Users</a>
                         <a class="collapse-item" href="cards.html">Role</a>
-                        <a class="collapse-item" href="cards.html">Permission</a>
+                        <a class="collapse-item" href="{{ route('permissions.index') }}">Permission</a>
                     </div>
                 </div>
             </li>
