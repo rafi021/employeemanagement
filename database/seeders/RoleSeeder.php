@@ -32,7 +32,7 @@ class RoleSeeder extends Seeder
         $role = Role::updateOrCreate([
             'name' => $this->roleList[1],
         ]);
-        $editorPermissions = ['role-list', 'user-list'];
+        $editorPermissions = ['city-list', 'user-list', 'country-list', 'state-list', 'department-list'];
         $role->syncPermissions($editorPermissions);
 
          // Create User role
@@ -40,7 +40,7 @@ class RoleSeeder extends Seeder
             'name' => $this->roleList[2],
         ]);
 
-        $userPermissions = ['role-list', 'user-list'];
+        $userPermissions = ['city-list', 'user-list', 'country-list', 'state-list', 'department-list'];
         $role->syncPermissions($userPermissions);
     }
 }
