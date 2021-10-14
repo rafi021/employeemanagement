@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -34,7 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.Users.create');
+        $roles = Role::select('id', 'name')->latest('id')->get();
+        return view('admin.pages.Users.create', compact('roles'));
     }
 
     /**
@@ -52,6 +54,9 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $user->assignRole($request->input('roles'));
+
         $notification = [
             'alert_type' => 'Success',
             'message' => 'User Created Successfully!!!'
@@ -79,7 +84,13 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.pages.Users.edit', compact('user'));
+        $roles = Role::select('id', 'name')->latest('id')->get();
+        $userRole = $user->roles->all();
+        return view('admin.pages.Users.edit', compact(
+            'user',
+            'roles',
+            'userRole'
+        ));
     }
 
     /**
@@ -97,6 +108,9 @@ class UserController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
         ]);
+
+        $user->assignRole($request->input('roles'));
+
         if($request->password){
             $user->update([
                 'password' => Hash::make($request->password)
