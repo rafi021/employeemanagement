@@ -14,6 +14,8 @@ class StateSeeder extends Seeder
      */
     public function run()
     {
-        State::factory(10)->create();
+        //Interactive database seeding
+        $seedCount = (int) $this->command->ask('How many "state" seeds would you like to create?', 200);
+        State::factory($seedCount)->create();
     }
 }

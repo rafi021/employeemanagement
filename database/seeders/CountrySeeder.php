@@ -14,6 +14,8 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        Country::factory(10)->create();
+        //Interactive database seeding
+        $seedCount = (int) $this->command->ask('How many "country" seeds would you like to create?', 20);
+        Country::factory($seedCount)->create();
     }
 }

@@ -14,6 +14,8 @@ class CitySeeder extends Seeder
      */
     public function run()
     {
-        City::factory(10)->create();
+        //Interactive database seeding
+        $seedCount = (int) $this->command->ask('How many "city" seeds would you like to create?', 20);
+        City::factory($seedCount)->create();
     }
 }

@@ -14,6 +14,8 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
-        Department::factory(10)->create();
+        //Interactive database seeding
+        $seedCount = (int) $this->command->ask('How many "department" seeds would you like to create?', 20);
+        Department::factory($seedCount)->create();
     }
 }

@@ -2885,6 +2885,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -63085,10 +63088,10 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.searchFilter, function(employee, index) {
+                _vm._l(_vm.searchFilter, function(employee) {
                   return _c("tr", { key: employee.id }, [
                     _c("th", { attrs: { scope: "row" } }, [
-                      _vm._v(_vm._s(index + 1))
+                      _vm._v(_vm._s(employee.id))
                     ]),
                     _vm._v(" "),
                     _c("th", { attrs: { scope: "row" } }, [
@@ -63149,10 +63152,22 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("pagination", {
-          attrs: { align: "center", data: _vm.rawdata },
-          on: { "pagination-change-page": _vm.list }
-        })
+        _c(
+          "pagination",
+          {
+            attrs: { align: "center", limit: 100, data: _vm.rawdata },
+            on: { "pagination-change-page": _vm.list }
+          },
+          [
+            _c("span", { attrs: { slot: "prev-nav" }, slot: "prev-nav" }, [
+              _vm._v("< Previous")
+            ]),
+            _vm._v(" "),
+            _c("span", { attrs: { slot: "next-nav" }, slot: "next-nav" }, [
+              _vm._v("Next >")
+            ])
+          ]
+        )
       ],
       1
     )

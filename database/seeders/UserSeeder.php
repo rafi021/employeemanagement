@@ -38,8 +38,9 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
         $normal->assignRole('User');
-
-        User::factory(1000)->create();
+        //Interactive database seeding
+        $seedCount = (int) $this->command->ask('How many "users" seeds would you like to create?', 20);
+        User::factory($seedCount)->create();
     }
 }
 

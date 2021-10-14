@@ -14,6 +14,8 @@ class EmployeeSeeder extends Seeder
      */
     public function run()
     {
-        Employee::factory(100)->create();
+        //Interactive database seeding
+        $seedCount = (int) $this->command->ask('How many "employee" seeds would you like to create?', 200);
+        Employee::factory($seedCount)->create();
     }
 }

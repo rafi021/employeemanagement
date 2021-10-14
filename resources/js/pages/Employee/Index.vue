@@ -39,8 +39,8 @@
                 </thead>
                 <tbody>
 
-                    <tr v-for="(employee,index) in searchFilter" :key="employee.id">
-                        <th scope="row">{{ index+1 }}</th>
+                    <tr v-for="(employee) in searchFilter" :key="employee.id">
+                        <th scope="row">{{ employee.id }}</th>
                         <th scope="row"> {{ employee.first_name }} </th>
                         <th scope="row"> {{ employee.last_name }} </th>
                         <th scope="row"> {{ employee.address }} </th>
@@ -54,7 +54,10 @@
                 </tbody>
               </table>
             </div>
-             <pagination align="center" :data="rawdata" @pagination-change-page="list"></pagination>
+             <pagination align="center" :data="rawdata" @pagination-change-page="list">
+                    <span slot="prev-nav">&lt; Previous</span>
+	                <span slot="next-nav">Next &gt;</span>
+             </pagination>
     </div>
 </div>
 </template>
