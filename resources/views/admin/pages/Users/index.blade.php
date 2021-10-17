@@ -37,6 +37,7 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">UserName</th>
+                    <th scope="col">FirstName</th>
                     <th scope="col">Email</th>
                     <th scope="col">Last Modified</th>
                     <th>Action</th>
@@ -47,6 +48,7 @@
                     <tr>
                         <th scope="row">{{ $users->firstItem()+$loop->index }}</th>
                         <td>{{ $user->username }}</td>
+                        <td>{{ $user->full_name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->updated_at->diffForHumans() }}</td>
                         <td>
