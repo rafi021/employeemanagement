@@ -63155,7 +63155,7 @@ var render = function() {
         _c(
           "pagination",
           {
-            attrs: { align: "center", limit: 100, data: _vm.rawdata },
+            attrs: { align: "center", data: _vm.rawdata },
             on: { "pagination-change-page": _vm.list }
           },
           [
