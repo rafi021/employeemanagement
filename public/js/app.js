@@ -61828,9 +61828,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                " +
+                            "\r\n                                " +
                               _vm._s(department.name) +
-                              "\n                                "
+                              "\r\n                                "
                           )
                         ]
                       )
@@ -61907,9 +61907,9 @@ var render = function() {
                         { key: country.id, domProps: { value: country.id } },
                         [
                           _vm._v(
-                            "\n                                " +
+                            "\r\n                                " +
                               _vm._s(country.name) +
-                              "\n                                "
+                              "\r\n                                "
                           )
                         ]
                       )
@@ -61986,9 +61986,9 @@ var render = function() {
                         { key: city.id, domProps: { value: city.id } },
                         [
                           _vm._v(
-                            "\n                            " +
+                            "\r\n                            " +
                               _vm._s(city.name) +
-                              "\n                            "
+                              "\r\n                            "
                           )
                         ]
                       )
@@ -62065,9 +62065,9 @@ var render = function() {
                         { key: state.id, domProps: { value: state.id } },
                         [
                           _vm._v(
-                            "\n                                " +
+                            "\r\n                                " +
                               _vm._s(state.name) +
-                              "\n                                "
+                              "\r\n                                "
                           )
                         ]
                       )
@@ -62241,7 +62241,7 @@ var staticRenderFns = [
           { staticClass: "btn btn-primary", attrs: { type: "submit" } },
           [
             _vm._v(
-              "\n                                Add New\n                            "
+              "\r\n                                Add New\r\n                            "
             )
           ]
         )
@@ -62568,9 +62568,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                " +
+                            "\r\n                                " +
                               _vm._s(department.name) +
-                              "\n                                "
+                              "\r\n                                "
                           )
                         ]
                       )
@@ -62647,9 +62647,9 @@ var render = function() {
                         { key: country.id, domProps: { value: country.id } },
                         [
                           _vm._v(
-                            "\n                                " +
+                            "\r\n                                " +
                               _vm._s(country.name) +
-                              "\n                                "
+                              "\r\n                                "
                           )
                         ]
                       )
@@ -62726,9 +62726,9 @@ var render = function() {
                         { key: city.id, domProps: { value: city.id } },
                         [
                           _vm._v(
-                            "\n                            " +
+                            "\r\n                            " +
                               _vm._s(city.name) +
-                              "\n                            "
+                              "\r\n                            "
                           )
                         ]
                       )
@@ -62805,9 +62805,9 @@ var render = function() {
                         { key: state.id, domProps: { value: state.id } },
                         [
                           _vm._v(
-                            "\n                                " +
+                            "\r\n                                " +
                               _vm._s(state.name) +
-                              "\n                                "
+                              "\r\n                                "
                           )
                         ]
                       )
@@ -62981,7 +62981,7 @@ var staticRenderFns = [
           { staticClass: "btn btn-info", attrs: { type: "submit" } },
           [
             _vm._v(
-              "\n                                Update\n                            "
+              "\r\n                                Update\r\n                            "
             )
           ]
         )

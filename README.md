@@ -69,3 +69,8 @@ Finally we are ready to run our project using this command
 ```sh
 php artisan serve 
 ```
+
+************************************ Note *********************************
+If you find error on migrate:fresh --seed, then try to comment all the observers created method.Such as 
+ // Log::info("New City".$city."Data Inserted by ".auth()->user()->username);
+***************************************************************************
