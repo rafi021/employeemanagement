@@ -14,6 +14,7 @@ use App\Observers\DepartmentObserver;
 use App\Observers\EmployeeObserver;
 use App\Observers\StateObserver;
 use App\Observers\UserObserver;
+use App\Repositories\BackendServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
     }
 
     /**

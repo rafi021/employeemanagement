@@ -1,5 +1,7 @@
 <?php
 
+use App\Repositories\BackendServiceProvider;
+
 return [
 
     /*
@@ -176,6 +178,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        // Custom Service Provider
+        BackendServiceProvider::class,
     ],
 
     /*

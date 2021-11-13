@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\CityController;
 use App\Http\Controllers\Backend\CountryController;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\PermissionController;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\StateController;
 use App\Http\Controllers\Backend\UserController;
@@ -38,8 +39,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('departments', DepartmentController::class);
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RoleController::class);
+        Route::resource('posts', PostController::class);
     });
     Route::get('{any}', function () {
         return view('admin.pages.Employee.index');
     })->where('any', '.*');
 });
+
+
