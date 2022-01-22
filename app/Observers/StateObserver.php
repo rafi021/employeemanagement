@@ -15,7 +15,7 @@ class StateObserver
      */
     public function created(State $state)
     {
-        Log::info("New state".$state."Data Inserted by ".auth()->user()->username);
+        //Log::info("New state".$state."Data Inserted by ".auth()->user()->username);
     }
 
     /**

@@ -15,7 +15,7 @@ class EmployeeObserver
      */
     public function created(Employee $employee)
     {
-        Log::info("New employee".$employee."Data Inserted by ".auth()->user()->username);
+        //Log::info("New employee".$employee."Data Inserted by ".auth()->user()->username);
     }
 
     /**

@@ -15,7 +15,7 @@ class CityObserver
      */
     public function created(City $city)
     {
-        Log::info("New City".$city."Data Inserted by ".auth()->user()->username);
+        //Log::info("New City".$city."Data Inserted by ".auth()->user()->username);
     }
 
     /**

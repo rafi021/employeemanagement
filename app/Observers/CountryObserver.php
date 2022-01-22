@@ -15,7 +15,7 @@ class CountryObserver
      */
     public function created(Country $country)
     {
-        Log::info("New country".$country."Data Inserted by ".auth()->user()->username);
+        //Log::info("New country".$country."Data Inserted by ".auth()->user()->username);
     }
 
     /**

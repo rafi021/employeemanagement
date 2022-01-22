@@ -84,6 +84,11 @@ return [
 
     'locale' => 'en',
 
+    'languages' => [
+        'en' => 'English',
+        'bn' => 'Bengali',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

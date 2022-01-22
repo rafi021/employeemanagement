@@ -15,7 +15,7 @@ class DepartmentObserver
      */
     public function created(Department $department)
     {
-        Log::info("New department".$department."Data Inserted by ".auth()->user()->username);
+        //Log::info("New department".$department."Data Inserted by ".auth()->user()->username);
     }
 
     /**

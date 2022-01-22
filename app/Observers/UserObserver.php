@@ -15,7 +15,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        Log::info("New user".$user."Data Inserted by ".auth()->user()->username);
+        //Log::info("New user".$user."Data Inserted by ".auth()->user()->username);
     }
 
     /**

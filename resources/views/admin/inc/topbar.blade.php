@@ -9,6 +9,20 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
+                        @if (count(config('app.languages')) > 1)
+                            <li class="nav-item dropdown d-md-down-none">
+                                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {{ strtoupper(app()->getLocale()) }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    @foreach (config('app.languages') as $langLocale => $langName)
+                                        <a class="dropdown-item" href="{{ url()->current() }}?change_langiage={{ $langLocale }}">
+                                            {{ strtoupper($langLocale) }} ({{ $langName }})
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </li>
+                        @endif
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
